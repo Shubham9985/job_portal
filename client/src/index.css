@@ -6,3 +6,25 @@
 *{
     font-family: Outfit;
 }
+
+@layer base{
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.rich-text { font-size: 15px; color: #7A7B7D; }
+
+.rich-text p {margin-bottom : 16px; }
+
+.rich-text strong { font-weight: 700;}
+
+.rich-text ol {margin-left: 30px; list-style-type: decimal;}
+
+.rich-text ul {margin-left : 30px; list-style-type: disc;}
+
+.rich-text li {margin-bottom: 8px;}
