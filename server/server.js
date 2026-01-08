@@ -35,3 +35,5 @@ app.listen(PORT, () => {
 
 //connect to database
 connectDB(); 
+
+//check status update if git is working fine or not
