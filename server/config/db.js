@@ -1,13 +1,22 @@
 import mongoose from "mongoose";
 
-//conect with MONGODB
+//connect with MONGODB
 
 const connectDB = async () => {
-    mongoose.connection.on("connected", () => {
-        console.log("MONGODB connected successfully");
-    })
+    try {
+        mongoose.connection.on("connected", () => {
+            console.log("MONGODB connected successfully");
+        });
 
-    await mongoose.connect(`${process.env.MONGODB_URI}/job-portal`)
+        mongoose.connection.on("error", (err) => {
+            console.error("MONGODB connection error:", err);
+        });
+
+        await mongoose.connect(`${process.env.MONGODB_URI}/job-portal`);
+        console.log("MONGODB connection attempt completed");
+    } catch (error) {
+        console.error("Failed to connect to MONGODB:", error);
+    }
 }
 
 export default connectDB;
