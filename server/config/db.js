@@ -12,6 +12,7 @@ const connectDB = async () => {
                 console.log("MONGODB connection attempt completed");
         } catch (error) {
                 console.error("Failed to connect to MONGODB:", error);
+                // Don't throw, to prevent crash in serverless
         }
 }
 

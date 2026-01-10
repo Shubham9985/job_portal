@@ -5,6 +5,9 @@ import User from "../models/User.js";
 //API to handle clerk webhooks
 const clerkWebHooks = async (req,res) => {
     try{
+        if (!process.env.CLERK_WEBHOOK_SECRET) {
+            return res.status(500).json({ success: false, message: 'Webhook secret not configured' });
+        }
 
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
 
