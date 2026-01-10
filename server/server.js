@@ -4,7 +4,8 @@ import 'dotenv/config';
 import connectDB from './config/db.js';
 import './config/instrument.js';
 import * as Sentry from "@sentry/node";
-import { clerkWebHooks } from './controllers/clerkWebhooksController.js';
+import { clerkWebHooks } from './controllers/WebHooks.js';
+
 
 
 //initialize express app
@@ -22,7 +23,7 @@ app.get('/', (req, res) => {
 app.get("/debug-sentry", function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
 });
-app.post('/webhooks',clerkWebHooks);
+app.post('/webhooks', clerkWebHooks);
 
 
 //port
@@ -31,12 +32,8 @@ const PORT = process.env.PORT || 5000;
 Sentry.setupExpressErrorHandler(app);
 
 
-//start server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
 //connect to database
-connectDB(); 
+connectDB();
 
-//check status update if git is working fine or not
+//export for Vercel serverless
+export default app;
