@@ -35,5 +35,12 @@ Sentry.setupExpressErrorHandler(app);
 //connect to database
 connectDB();
 
+// Start server for local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
 //export for Vercel serverless
 export default app;
